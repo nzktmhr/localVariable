@@ -1,0 +1,23 @@
+name: Local Variable Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  local-variable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Define and use local variable
+        run: |
+          my_function() {
+            local LOCAL_VAR="This is a local variable"
+            echo "Inside function: $LOCAL_VAR"
+          }
+
+          my_function
+
+          # LOCAL_VARにアクセスしようとする
+          echo "Outside function: ${LOCAL_VAR:-undefined}"
+        shell: bash
